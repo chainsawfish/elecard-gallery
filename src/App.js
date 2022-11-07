@@ -4,16 +4,10 @@ import "./App.css";
 import Image from "./components/Image";
 import Gallery from "./components/Gallery";
 import constants from "./module/constants";
+import Header from "./components/Header";
 
 function App() {
   const [images, setImages] = useState([]);
-
-  localStorage.setItem("animals/animals-2939726__480.jpg", "hidden");
-  localStorage.setItem("animals/baby-monkey-4888534__480.jpg", "hidden");
-  localStorage.setItem(
-    "animals/australian-shepherd-5902417__480.jpg",
-    "hidden"
-  );
 
   axios
     .get(constants.JSON_URL)
@@ -26,8 +20,9 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <div className="gallery">
-        <Gallery className="gallery" images={images} />
+        <Gallery images={images} />
       </div>
     </div>
   );

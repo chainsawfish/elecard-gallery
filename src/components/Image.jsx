@@ -5,7 +5,6 @@ import constants from "../module/constants";
 const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
   const hideImage = (img) => {
     localStorage.setItem(img, "hidden");
-    console.log("item hidden now");
   };
   return (
     <div className={style.imageContainer}>
