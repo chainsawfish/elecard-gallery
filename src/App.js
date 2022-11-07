@@ -3,13 +3,20 @@ import axios from "axios";
 import "./App.css";
 import Image from "./components/Image";
 import Gallery from "./components/Gallery";
-
-const url = "http://contest.elecard.ru/frontend_data/catalog.json";
+import constants from "./module/constants";
 
 function App() {
   const [images, setImages] = useState([]);
+
+  localStorage.setItem("animals/animals-2939726__480.jpg", "hidden");
+  localStorage.setItem("animals/baby-monkey-4888534__480.jpg", "hidden");
+  localStorage.setItem(
+    "animals/australian-shepherd-5902417__480.jpg",
+    "hidden"
+  );
+
   axios
-    .get(url)
+    .get(constants.JSON_URL)
     .then((response) => {
       setImages(response.data);
     })
@@ -19,7 +26,9 @@ function App() {
 
   return (
     <div className="App">
-      <Gallery images={images} />
+      <div className="gallery">
+        <Gallery className="gallery" images={images} />
+      </div>
     </div>
   );
 }

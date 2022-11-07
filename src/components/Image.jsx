@@ -1,16 +1,17 @@
 import React from "react";
 import style from "./Image.module.css";
+import constants from "../module/constants";
 
 const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
   return (
     <div className={style.imageContainer}>
       <img
         className={style.image}
-        src="http://contest.elecard.ru/frontend_data/animals/animals-2939726__480.jpg"
+        src={constants.IMG_URL + imageUrl}
         alt={imageUrl}
       />
       <div className={style.imageText}>
-        <p>Some description for image</p>
+        <p>{imageUrl}</p>
       </div>
       <div className={style.imageCross}>✕</div>
     </div>
