@@ -9,10 +9,10 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
         src="http://contest.elecard.ru/frontend_data/animals/animals-2939726__480.jpg"
         alt={imageUrl}
       />
-      <div class={style.imageText}>
+      <div className={style.imageText}>
         <p>Some description for image</p>
       </div>
-      <div class={style.imageCross}>✕</div>
+      <div className={style.imageCross}>✕</div>
     </div>
   );
 };
