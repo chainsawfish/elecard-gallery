@@ -3,6 +3,10 @@ import style from "./Image.module.css";
 import constants from "../module/constants";
 
 const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
+  const hideImage = (img) => {
+    localStorage.setItem(img, "hidden");
+    console.log("item hidden now");
+  };
   return (
     <div className={style.imageContainer}>
       <img
@@ -13,7 +17,9 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
       <div className={style.imageText}>
         <p>{imageUrl}</p>
       </div>
-      <div className={style.imageCross}>✕</div>
+      <div className={style.imageCross} onClick={() => hideImage(imageUrl)}>
+        ✕
+      </div>
     </div>
   );
 };

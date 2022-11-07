@@ -1,11 +1,6 @@
 import Image from "./Image";
 
 const Gallery = ({ images }) => {
-  const isHidden = (img) => {
-    if (localStorage.hasOwnProperty(img));
-    return;
-  };
-
   return images.map((el, index) => {
     return (
       !(localStorage.getItem(el.image) === "hidden") && (
