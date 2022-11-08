@@ -3,7 +3,7 @@ footer {
     bottom: 0px;
     height: 50px;
     width: 100%;
-    z-index: 99;
+    z-index: 1;
     background-color: bisque;
     display: flex;
     align-items: center;
