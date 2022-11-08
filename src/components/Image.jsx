@@ -4,7 +4,6 @@ import style from "./Image.module.css";
 import constants from "../module/constants";
 import getDate from "../module/getDate";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 
 const modalStyle = {
