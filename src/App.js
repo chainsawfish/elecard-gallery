@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-responsive-pagination";
 import "bootstrap/dist/css/bootstrap.css";
+import { LinearProgress } from "@mui/material";
 import "./App.css";
 import Gallery from "./components/Gallery";
 import constants from "./module/constants";
@@ -11,6 +12,7 @@ function App() {
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -25,7 +27,8 @@ function App() {
       })
       .catch((error) => {
         console.log(`Error in parsing json - ${error.message}`);
-      });
+      })
+      .finally(() => setTimeout(() => setIsLoading(false), 2000));
   }, [images.length]);
 
   const sortHandler = (sortType) => {
@@ -75,6 +78,7 @@ function App() {
   return (
     <div className="App">
       <Header sortHandler={sortHandler} deleteHandler={deleteHandler} />
+      {isLoading ? <LinearProgress /> : <></>}
       <div className="gallery">
         <Gallery
           images={images.filter((_, ind) => {
@@ -83,11 +87,13 @@ function App() {
           deleteHandler={deleteHandler}
         />
       </div>
-      <Pagination
-        current={currentPage}
-        total={totalPages}
-        onPageChange={(page) => handlePageChange(page)}
-      />
+      <footer>
+        <Pagination
+          current={currentPage}
+          total={totalPages}
+          onPageChange={(page) => handlePageChange(page)}
+        />
+      </footer>
     </div>
   );
 }

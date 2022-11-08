@@ -1,5 +1,4 @@
-import style from "./RadioSort.module.css";
-import { useState, useEffect } from "react";
+import "./RadioSort.module.css";
 
 const RadioSort = ({ sortHandler }) => {
   return (
