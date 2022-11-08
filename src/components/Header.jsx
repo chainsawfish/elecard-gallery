@@ -1,4 +1,4 @@
-import style from "./Header.module.css";
+import "./Header.module.css";
 import RadioSort from "./RadioSort";
 
 const Header = ({ sortHandler, deleteHandler }) => {
