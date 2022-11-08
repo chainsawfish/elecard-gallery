@@ -1,8 +1,15 @@
 import React from "react";
 import style from "./Image.module.css";
 import constants from "../module/constants";
+import getDate from "../module/getDate";
 
 const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
+  let cleanName = imageUrl
+    .split("/")
+    .pop()
+    .replace(/[-_.,0-9]/g, "")
+    .replace("jpg", "");
+
   return (
     <div className={style.imageContainer}>
       <img
@@ -11,7 +18,8 @@ const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
         alt={imageUrl}
       />
       <div className={style.imageText}>
-        <p>{imageUrl}</p>
+        <p>{cleanName}</p>
+        <p>{getDate(timeStamp)}</p>
       </div>
       <div className={style.imageCross} onClick={() => deleteHandler(imageUrl)}>
         ✕
