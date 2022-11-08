@@ -24,13 +24,9 @@ function App() {
     switch (sortType) {
       case "name":
         sortedArray.sort((a, b) => {
-          if (a.image > b.image) {
-            return -1;
-          }
-          if (a.image < b.image) {
-            return 1;
-          }
-          return 0;
+          let name1 = a.image.split("/").pop();
+          let name2 = b.image.split("/").pop();
+          return ("" + name1).localeCompare(name2);
         });
         console.log("sorted by name");
         break;
@@ -40,10 +36,10 @@ function App() {
         break;
       case "category":
         sortedArray.sort((a, b) => {
-          if (a.category > b.category) {
+          if (a.category < b.category) {
             return -1;
           }
-          if (a.category < b.category) {
+          if (a.category > b.category) {
             return 1;
           }
           return 0;
@@ -55,16 +51,27 @@ function App() {
         console.log("sorted by date");
         break;
       default:
+        sortedArray.sort((a, b) => {
+          let name1 = a.image.split("/").pop();
+          let name2 = b.image.split("/").pop();
+          if (name1.image < name2.image) return -1;
+          if (name1.image > name2.image) return 1;
+          return 0;
+        });
         break;
     }
     setImages(sortedArray);
+  };
+  const deleteHandler = (img) => {
+    localStorage.setItem(img, "hidden");
+    setImages(images.filter((el) => el.image !== img));
   };
 
   return (
     <div className="App">
       <Header sortHandler={sortHandler} />
       <div className="gallery">
-        <Gallery images={images} />
+        <Gallery images={images} deleteHandler={deleteHandler} />
       </div>
     </div>
   );

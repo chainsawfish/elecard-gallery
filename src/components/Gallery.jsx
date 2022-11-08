@@ -1,13 +1,9 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import ReactPaginate from "react-paginate";
 import Image from "./Image";
 
-const Gallery = ({ imagesArray }) => {
-  const [images, setImages] = useState(imagesArray);
-
-  const deleteHandler = (img) => {
-    setImages(imagesArray.filter((el) => el.image !== img));
-  };
-
+const Gallery = ({ images, deleteHandler }) => {
   return images.map((el, index) => {
     return (
       !(localStorage.getItem(el.image) === "hidden") && (
@@ -17,7 +13,7 @@ const Gallery = ({ imagesArray }) => {
           fileSize={el.filesize}
           category={el.category}
           timeStamp={el.timestamp}
-          onClick={deleteHandler}
+          deleteHandler={deleteHandler}
         />
       )
     );

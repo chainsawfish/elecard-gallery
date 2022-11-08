@@ -2,11 +2,7 @@ import React from "react";
 import style from "./Image.module.css";
 import constants from "../module/constants";
 
-const Image = ({ imageUrl, fileSize, category, timeStamp, onClick }) => {
-  const hideImage = (img) => {
-    localStorage.setItem(img, "hidden");
-  };
-
+const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
   return (
     <div className={style.imageContainer}>
       <img
@@ -17,7 +13,7 @@ const Image = ({ imageUrl, fileSize, category, timeStamp, onClick }) => {
       <div className={style.imageText}>
         <p>{imageUrl}</p>
       </div>
-      <div className={style.imageCross} onClick={() => onClick(imageUrl)}>
+      <div className={style.imageCross} onClick={() => deleteHandler(imageUrl)}>
         ✕
       </div>
     </div>
