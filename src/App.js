@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "react-responsive-pagination";
+import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Gallery from "./components/Gallery";
 import constants from "./module/constants";
@@ -7,17 +9,24 @@ import Header from "./components/Header";
 
 function App() {
   const [images, setImages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     axios
       .get(constants.JSON_URL)
       .then((response) => {
         setImages(response.data);
+        setTotalPages(Number(images.length / 20));
       })
       .catch((error) => {
         console.log(`Error in parsing json - ${error.message}`);
       });
-  }, []);
+  }, [images.length]);
 
   const sortHandler = (sortType) => {
     let sortedArray = [...images];
@@ -28,11 +37,9 @@ function App() {
           let name2 = b.image.split("/").pop();
           return ("" + name1).localeCompare(name2);
         });
-        console.log("sorted by name");
         break;
       case "fileSize":
         sortedArray.sort((a, b) => a.filesize - b.filesize);
-        console.log("sorted by filesize");
         break;
       case "category":
         sortedArray.sort((a, b) => {
@@ -44,11 +51,9 @@ function App() {
           }
           return 0;
         });
-        console.log("sorted by cat");
         break;
       case "date":
         sortedArray.sort((a, b) => a.timestamp - b.timestamp);
-        console.log("sorted by date");
         break;
       default:
         sortedArray.sort((a, b) => {
@@ -71,8 +76,18 @@ function App() {
     <div className="App">
       <Header sortHandler={sortHandler} />
       <div className="gallery">
-        <Gallery images={images} deleteHandler={deleteHandler} />
+        <Gallery
+          images={images.filter((_, ind) => {
+            return ind >= (currentPage - 1) * 20 && ind <= currentPage * 20;
+          })}
+          deleteHandler={deleteHandler}
+        />
       </div>
+      <Pagination
+        current={currentPage}
+        total={totalPages}
+        onPageChange={(page) => handlePageChange(page)}
+      />
     </div>
   );
 }
