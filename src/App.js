@@ -67,14 +67,14 @@ function App() {
     }
     setImages(sortedArray);
   };
-  const deleteHandler = (img) => {
+  const deleteHandler = (img = "") => {
     localStorage.setItem(img, "hidden");
     setImages(images.filter((el) => el.image !== img));
   };
 
   return (
     <div className="App">
-      <Header sortHandler={sortHandler} />
+      <Header sortHandler={sortHandler} deleteHandler={deleteHandler} />
       <div className="gallery">
         <Gallery
           images={images.filter((_, ind) => {

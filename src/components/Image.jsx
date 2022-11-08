@@ -18,7 +18,9 @@ const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
         alt={imageUrl}
       />
       <div className={style.imageText}>
+        <strong>{category}:</strong>
         <p>{cleanName}</p>
+        <p>{Number(Math.ceil(fileSize / 1024))} KB</p>
         <p>{getDate(timeStamp)}</p>
       </div>
       <div className={style.imageCross} onClick={() => deleteHandler(imageUrl)}>
