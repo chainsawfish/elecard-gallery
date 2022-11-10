@@ -1,20 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 import style from "./Image.module.css";
 import constants from "../module/constants";
 import getDate from "../module/getDate";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "fit-content",
-  bgcolor: "",
-  border: "0px solid #000",
-};
+// const modalStyle = {
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: "fit-content",
+//   bgcolor: "",
+//   border: "0px solid #000",
+// };
 
 const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
   const [open, setOpen] = useState(false);
@@ -44,7 +44,7 @@ const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
         ✕
       </div>
       <Modal open={open} onClose={handleClose}>
-        <Box sx={modalStyle}>
+        <Box sx={constants.modalStyle}>
           <img src={constants.IMG_URL + imageUrl} alt={imageUrl} />
         </Box>
       </Modal>

@@ -34,3 +34,10 @@ footer {
 .treeImages {
   margin-left: 50px;
 }
+.treeImages img{
+  max-width: 50px; 
+  margin: 5px; 
+}
+.treeImages:hover{
+    box-shadow: 1px 1px 1px 1px rgb(224, 166, 20);
+}
