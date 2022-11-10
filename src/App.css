@@ -17,3 +17,20 @@ footer {
     z-index: 1;
     
 }
+.parentNode h2 {
+  cursor: pointer;
+}
+.category {
+  cursor: pointer;
+}
+
+.treeView, .category {
+  margin: 10px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.treeImages {
+  margin-left: 50px;
+}

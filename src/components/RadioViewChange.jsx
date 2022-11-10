@@ -6,7 +6,7 @@ const RadioViewChange = ({ viewHandler }) => {
         type="radio"
         name="viewChange"
         value="standartView"
-        onChange={() => viewHandler("standartView")}
+        onChange={(e) => viewHandler(e.target.value)}
         defaultChecked
       />
       Tree view
@@ -14,7 +14,7 @@ const RadioViewChange = ({ viewHandler }) => {
         type="radio"
         name="viewChange"
         value="treeView"
-        onChange={() => viewHandler("treeView")}
+        onChange={(e) => viewHandler(e.target.value)}
       />
     </div>
   );
