@@ -1,22 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import style from "./Image.module.css";
 import constants from "../module/constants";
 import getDate from "../module/getDate";
+import { AppContext } from "../App";
 
-// const modalStyle = {
-//   position: "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   width: "fit-content",
-//   bgcolor: "",
-//   border: "0px solid #000",
-// };
-
-const Image = ({ imageUrl, fileSize, category, timeStamp, deleteHandler }) => {
+const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
+  const { deleteHandler } = useContext(AppContext);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

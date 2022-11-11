@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import "./Header.module.css";
 import RadioSort from "./RadioSort";
 import RadioViewChange from "./RadioViewChange";
+import { AppContext } from "../App";
 
-const Header = ({ sortHandler, deleteHandler, viewHandler }) => {
+const Header = () => {
+  const { deleteHandler } = useContext(AppContext);
   const clearLocalStorage = () => {
     localStorage.clear();
     deleteHandler();
@@ -10,8 +13,8 @@ const Header = ({ sortHandler, deleteHandler, viewHandler }) => {
   return (
     <header>
       <button onClick={clearLocalStorage}>Reset</button>
-      <RadioViewChange viewHandler={viewHandler} />
-      <RadioSort sortHandler={sortHandler} />
+      <RadioViewChange />
+      <RadioSort />
     </header>
   );
 };

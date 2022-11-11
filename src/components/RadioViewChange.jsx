@@ -1,4 +1,8 @@
-const RadioViewChange = ({ viewHandler }) => {
+import { useContext } from "react";
+import { AppContext } from "../App";
+
+const RadioViewChange = () => {
+  const { viewHandler } = useContext(AppContext);
   return (
     <div>
       Standart view

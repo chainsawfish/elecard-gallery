@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-responsive-pagination";
 import "bootstrap/dist/css/bootstrap.css";
@@ -9,6 +9,8 @@ import constants from "./module/constants";
 import Header from "./components/Header";
 import TreeView from "./components/TreeView";
 import { sorting } from "./module/sorting";
+
+export const AppContext = createContext();
 
 function App() {
   const [images, setImages] = useState([]);
@@ -71,33 +73,38 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        sortHandler={sortHandler}
-        deleteHandler={deleteHandler}
-        viewHandler={viewHandler}
-      />
-      {isLoading ? <LinearProgress /> : <></>}
-      {galleryView ? (
-        <div className="gallery">
-          <Gallery
-            images={images.filter((_, ind) => {
-              return ind >= (currentPage - 1) * 20 && ind <= currentPage * 20;
-            })}
-            deleteHandler={deleteHandler}
-          />
-          <footer>
-            <Pagination
-              current={currentPage}
-              total={totalPages}
-              onPageChange={(page) => handlePageChange(page)}
+      <AppContext.Provider
+        value={{ deleteHandler, sortHandler, viewHandler, images }}
+      >
+        <Header
+        // sortHandler={sortHandler}
+        // deleteHandler={deleteHandler}
+        //viewHandler={viewHandler}
+        />
+
+        {isLoading ? <LinearProgress /> : <></>}
+        {galleryView ? (
+          <div className="gallery">
+            <Gallery
+              images={images.filter((_, ind) => {
+                return ind >= (currentPage - 1) * 20 && ind <= currentPage * 20;
+              })}
+              deleteHandler={deleteHandler}
             />
-          </footer>
-        </div>
-      ) : (
-        <div className="treeView">
-          <TreeView images={images} deleteHandler={deleteHandler} />
-        </div>
-      )}
+            <footer>
+              <Pagination
+                current={currentPage}
+                total={totalPages}
+                onPageChange={(page) => handlePageChange(page)}
+              />
+            </footer>
+          </div>
+        ) : (
+          <div className="treeView">
+            <TreeView images={images} deleteHandler={deleteHandler} />
+          </div>
+        )}
+      </AppContext.Provider>
     </div>
   );
 }
