@@ -92,6 +92,7 @@ function App() {
               images={imagesOnCurrentPage(images)}
               deleteHandler={deleteHandler}
             />
+
             <Paginator />
           </>
         ) : (

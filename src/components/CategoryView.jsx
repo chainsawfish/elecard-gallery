@@ -7,9 +7,7 @@ const CategoryView = ({ category, images }) => {
   const isOpened = (value) => {
     return value ? <span>[-]</span> : <span>[+]</span>;
   };
-  const setSignHandler = (value) => {
-    setSign(!sign);
-  };
+
   return (
     <div className="category">
       <h2 value={sign} onClick={() => setSign(!sign)}>
@@ -19,6 +17,7 @@ const CategoryView = ({ category, images }) => {
         if (img.category === category) {
           return <TreeNode imageUrl={img.image} sign={sign} key={ind} />;
         }
+        return null;
       })}
     </div>
   );
