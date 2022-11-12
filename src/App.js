@@ -17,14 +17,15 @@ function App() {
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [galleryView, setGalleryView] = useState(true);
-
+  // количество изображений на одну страницу для пагинации
+  const numberOfImagesOnPage = 20;
   // получение данных
   useEffect(() => {
     axios
       .get(constants.JSON_URL)
       .then((response) => {
         setImages(response.data);
-        setTotalPages(Number(images.length / 20));
+        setTotalPages(Number(images.length / numberOfImagesOnPage));
       })
       .catch((error) => {
         console.log(`Error in parsing json - ${error.message}`);
@@ -32,7 +33,7 @@ function App() {
       .finally(() => setTimeout(() => setIsLoading(false), 2000));
   }, [images.length]);
 
-  // сортировка
+  // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
   const sortHandler = (sortType) => {
     let sortedArray = [...images];
     switch (sortType) {
@@ -60,13 +61,18 @@ function App() {
     setImages(images.filter((el) => el.image !== img));
   };
 
-  // переключение вида
+  // переключение вида на дерево и обратно
   const viewHandler = (value) => {
     value === "standartView" ? setGalleryView(true) : setGalleryView(false);
   };
+
+  // показываем определенное количество изображений на страницу
   const imagesOnCurrentPage = (value) => {
     return images.filter((_, ind) => {
-      return ind >= (currentPage - 1) * 20 && ind <= currentPage * 20;
+      return (
+        ind >= (currentPage - 1) * numberOfImagesOnPage &&
+        ind <= currentPage * numberOfImagesOnPage
+      );
     });
   };
 
