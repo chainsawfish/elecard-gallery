@@ -1,9 +1,7 @@
-import TreeNode from "./TreeNode";
 import { sorting } from "../module/sorting";
-import { useState } from "react";
 import CategoryView from "./CategoryView";
 
-const TreeView = ({ images, deleteHandler }) => {
+const TreeView = ({ images }) => {
   const categoriesArray = (arrayOfImages) => {
     const arr = Array(...new Set(arrayOfImages.map((el) => el.category)));
     return arr;

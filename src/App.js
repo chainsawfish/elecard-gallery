@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import Pagination from "react-responsive-pagination";
 import "bootstrap/dist/css/bootstrap.css";
 import { LinearProgress } from "@mui/material";
 import "./App.css";
@@ -8,8 +7,8 @@ import Gallery from "./components/Gallery";
 import constants from "./module/constants";
 import Header from "./components/Header";
 import TreeView from "./components/TreeView";
+import Paginator from "./components/Paginator";
 import { sorting } from "./module/sorting";
-
 export const AppContext = createContext();
 
 function App() {
@@ -18,10 +17,6 @@ function App() {
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [galleryView, setGalleryView] = useState(true);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
 
   // получение данных
   useEffect(() => {
@@ -54,7 +49,6 @@ function App() {
         sortedArray.sort(sorting.date);
         break;
       default:
-        sortedArray.sort(sorting.name);
         break;
     }
     setImages(sortedArray);
@@ -70,39 +64,38 @@ function App() {
   const viewHandler = (value) => {
     value === "standartView" ? setGalleryView(true) : setGalleryView(false);
   };
+  const imagesOnCurrentPage = (value) => {
+    return images.filter((_, ind) => {
+      return ind >= (currentPage - 1) * 20 && ind <= currentPage * 20;
+    });
+  };
 
   return (
     <div className="App">
       <AppContext.Provider
-        value={{ deleteHandler, sortHandler, viewHandler, images }}
+        value={{
+          deleteHandler,
+          sortHandler,
+          viewHandler,
+          currentPage,
+          setCurrentPage,
+          totalPages,
+          images,
+          setImages,
+        }}
       >
-        <Header
-        // sortHandler={sortHandler}
-        // deleteHandler={deleteHandler}
-        //viewHandler={viewHandler}
-        />
-
+        <Header />
         {isLoading ? <LinearProgress /> : <></>}
         {galleryView ? (
-          <div className="gallery">
+          <>
             <Gallery
-              images={images.filter((_, ind) => {
-                return ind >= (currentPage - 1) * 20 && ind <= currentPage * 20;
-              })}
+              images={imagesOnCurrentPage(images)}
               deleteHandler={deleteHandler}
             />
-            <footer>
-              <Pagination
-                current={currentPage}
-                total={totalPages}
-                onPageChange={(page) => handlePageChange(page)}
-              />
-            </footer>
-          </div>
+            <Paginator />
+          </>
         ) : (
-          <div className="treeView">
-            <TreeView images={images} deleteHandler={deleteHandler} />
-          </div>
+          <TreeView images={images} deleteHandler={deleteHandler} />
         )}
       </AppContext.Provider>
     </div>
