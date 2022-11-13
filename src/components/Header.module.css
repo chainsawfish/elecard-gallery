@@ -1,13 +1,14 @@
 header {
     position: sticky;
     top: 0px;
-    height: 70px;
+    min-height: 70px;
     width: 100%;
     z-index: 99;
     background-color: bisque;
     display: flex;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
