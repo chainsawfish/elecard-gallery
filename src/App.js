@@ -17,21 +17,23 @@ function App() {
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [galleryView, setGalleryView] = useState(true);
+
   // количество изображений на одну страницу для пагинации
-  const numberOfImagesOnPage = 20;
+  const numberOfImagesOnPage = 30;
+  const numberOfTotalPages = Number(images.length / numberOfImagesOnPage);
   // получение данных
   useEffect(() => {
     axios
       .get(constants.JSON_URL)
       .then((response) => {
         setImages(response.data);
-        setTotalPages(Number(images.length / numberOfImagesOnPage));
+        setTotalPages(numberOfTotalPages);
       })
       .catch((error) => {
         console.log(`Error in parsing json - ${error.message}`);
       })
-      .finally(() => setTimeout(() => setIsLoading(false), 2000));
-  }, [images.length]);
+      .finally(setIsLoading(false));
+  }, [numberOfTotalPages, images.length]);
 
   // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
   const sortHandler = (sortType) => {
@@ -57,8 +59,8 @@ function App() {
 
   // удаление выбранного изображения
   const deleteHandler = (img = "") => {
-    localStorage.setItem(img, "hidden");
     setImages(images.filter((el) => el.image !== img));
+    localStorage.setItem(img, "hidden");
   };
 
   // переключение вида на дерево и обратно
@@ -67,10 +69,10 @@ function App() {
   };
 
   // показываем определенное количество изображений на страницу
-  const imagesOnCurrentPage = (value) => {
+  const imagesOnCurrentPage = () => {
     return images.filter((_, ind) => {
       return (
-        ind >= (currentPage - 1) * numberOfImagesOnPage &&
+        ind >= currentPage - 1 * numberOfImagesOnPage &&
         ind <= currentPage * numberOfImagesOnPage
       );
     });
@@ -94,15 +96,11 @@ function App() {
         {isLoading ? <LinearProgress /> : <></>}
         {galleryView ? (
           <>
-            <Gallery
-              images={imagesOnCurrentPage(images)}
-              deleteHandler={deleteHandler}
-            />
-
+            <Gallery images={imagesOnCurrentPage()} />
             <Paginator />
           </>
         ) : (
-          <TreeView images={images} deleteHandler={deleteHandler} />
+          <TreeView images={images} />
         )}
       </AppContext.Provider>
     </div>

@@ -5,7 +5,7 @@ import { AppContext } from "../App";
 
 const Paginator = () => {
   const { currentPage, totalPages, setCurrentPage } = useContext(AppContext);
-  const handlePageChange = (page) => {
+  const handlePageChange = (page = 1) => {
     setCurrentPage(page);
   };
 
@@ -15,6 +15,7 @@ const Paginator = () => {
         current={currentPage}
         total={totalPages}
         onPageChange={(page) => handlePageChange(page)}
+        a11yActiveLabel=""
       />
     </footer>
   );

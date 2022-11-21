@@ -1,6 +1,6 @@
 import Image from "./Image";
 
-const Gallery = ({ images, deleteHandler }) => {
+const Gallery = ({ images }) => {
   return (
     <div className="gallery">
       {images.map((el, index) => {
@@ -12,7 +12,6 @@ const Gallery = ({ images, deleteHandler }) => {
               fileSize={el.filesize}
               category={el.category}
               timeStamp={el.timestamp}
-              deleteHandler={deleteHandler}
             />
           )
         );
