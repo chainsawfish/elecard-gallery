@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import TreeView from "./components/TreeView";
 import Paginator from "./components/Paginator";
 import { sorting } from "./module/sorting";
-export const AppContext = createContext();
+export const AppContext = createContext(null);
 
 function App() {
   const [images, setImages] = useState([]);
@@ -32,7 +32,7 @@ function App() {
       .catch((error) => {
         console.log(`Error in parsing json - ${error.message}`);
       })
-      .finally(setIsLoading(false));
+      .finally(() => setIsLoading(false));
   }, [numberOfTotalPages, images.length]);
 
   // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
@@ -72,7 +72,7 @@ function App() {
   const imagesOnCurrentPage = () => {
     return images.filter((_, ind) => {
       return (
-        ind >= currentPage - 1 * numberOfImagesOnPage &&
+        ind >= (currentPage - 1) * numberOfImagesOnPage &&
         ind <= currentPage * numberOfImagesOnPage
       );
     });
