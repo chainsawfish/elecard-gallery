@@ -1,4 +1,5 @@
 import Image from "./Image";
+import style from "./Gallery.module.css"
 import {AppContext} from "../App";
 import {useContext} from "react";
 
@@ -12,7 +13,7 @@ const Gallery = ({ images }) => {
       );
   };
   return (
-    <div className="gallery">
+    <div className={style.gallery}>
       {images.map((el, index) => {
         return (
           isOnCurrentPage(index) && !(localStorage.getItem(el.image) === "hidden") && (

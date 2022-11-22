@@ -1,7 +1,4 @@
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+}

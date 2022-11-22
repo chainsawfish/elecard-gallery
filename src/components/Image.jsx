@@ -44,7 +44,7 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
             onClick={handleOpen}
           />
           <div className={style.imageText}>
-            <strong>{category}:</strong>
+            <p><strong>{category}:</strong></p>
             <p>{cleanName}</p>
             <p>{Number(Math.ceil(fileSize / 1024))} KB</p>
             <p>{getDate(timeStamp)}</p>

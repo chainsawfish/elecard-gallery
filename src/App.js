@@ -21,8 +21,8 @@ function App() {
 
 
     // количество изображений на одну страницу для пагинации
-    const numberOfImagesOnPage = 30;
-    const numberOfTotalPages = Number(images.length / numberOfImagesOnPage);
+    const numberOfImagesOnPage = 29;
+    const numberOfTotalPages = Math.ceil(images.length / numberOfImagesOnPage);
     // получение данных
     useEffect(() => {
         axios
