@@ -33,7 +33,7 @@ function App() {
         console.log(`Error in parsing json - ${error.message}`);
       })
       .finally(() => setIsLoading(false));
-  }, [numberOfTotalPages, images.length]);
+  }, [ images.length]);
 
   // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
   const sortHandler = (sortType) => {
@@ -68,16 +68,6 @@ function App() {
     value === "standartView" ? setGalleryView(true) : setGalleryView(false);
   };
 
-  // показываем определенное количество изображений на страницу
-  const imagesOnCurrentPage = () => {
-    return images.filter((_, ind) => {
-      return (
-        ind >= (currentPage - 1) * numberOfImagesOnPage &&
-        ind <= currentPage * numberOfImagesOnPage
-      );
-    });
-  };
-
   return (
     <div className="App">
       <AppContext.Provider
@@ -89,14 +79,14 @@ function App() {
           setCurrentPage,
           totalPages,
           images,
-          setImages,
+          setImages, numberOfImagesOnPage
         }}
       >
         <Header />
         {isLoading ? <LinearProgress /> : <></>}
         {galleryView ? (
           <>
-            <Gallery images={imagesOnCurrentPage()} />
+            <Gallery images={images} />
             <Paginator />
           </>
         ) : (

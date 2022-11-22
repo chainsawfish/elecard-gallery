@@ -3,8 +3,8 @@ import CategoryView from "./CategoryView";
 
 const TreeView = ({ images }) => {
   const categoriesArray = (arrayOfImages) => {
-    const arr = Array(...new Set(arrayOfImages.map((el) => el.category)));
-    return arr;
+    return  Array(...new Set(arrayOfImages.map((el) => el.category)));
+
   };
   let sortedImages = images.sort(sorting.category);
 
