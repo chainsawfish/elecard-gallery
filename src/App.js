@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { LinearProgress } from "@mui/material";
@@ -18,6 +18,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [galleryView, setGalleryView] = useState(true);
 
+
   // количество изображений на одну страницу для пагинации
   const numberOfImagesOnPage = 30;
   const numberOfTotalPages = Number(images.length / numberOfImagesOnPage);
@@ -27,14 +28,17 @@ function App() {
       .get(constants.JSON_URL)
       .then((response) => {
         setImages(response.data);
-        setTotalPages(numberOfTotalPages);
+
       })
       .catch((error) => {
         console.log(`Error in parsing json - ${error.message}`);
       })
       .finally(() => setIsLoading(false));
-  }, [ images.length]);
+  }, []);
 
+  useEffect(() => {
+      setTotalPages(numberOfTotalPages);
+  },[numberOfTotalPages])
   // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
   const sortHandler = (sortType) => {
     let sortedArray = [...images];
@@ -57,10 +61,14 @@ function App() {
     setImages(sortedArray);
   };
 
+    const handlePageChange = (page = 1) => {
+        setCurrentPage(page);
+    };
   // удаление выбранного изображения
   const deleteHandler = (img = "") => {
     setImages(images.filter((el) => el.image !== img));
     localStorage.setItem(img, "hidden");
+    handlePageChange(currentPage);
   };
 
   // переключение вида на дерево и обратно
@@ -75,6 +83,7 @@ function App() {
           deleteHandler,
           sortHandler,
           viewHandler,
+            handlePageChange,
           currentPage,
           setCurrentPage,
           totalPages,

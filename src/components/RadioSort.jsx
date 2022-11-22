@@ -14,6 +14,7 @@ const RadioSort = () => {
           type="radio"
           value="name"
           name="sort"
+          defaultChecked={true}
         />
         Filesize
         <input
