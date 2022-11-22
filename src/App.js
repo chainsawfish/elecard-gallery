@@ -29,8 +29,6 @@ function App() {
             .get(constants.JSON_URL)
             .then((response) => {
                 setImages(response.data);
-
-                console.log(images.length, " before delete")
             })
             .catch((error) => {
                 console.log(`Error in parsing json - ${error.message}`);
@@ -41,7 +39,6 @@ function App() {
     useEffect(() => {
         setTotalPages(numberOfTotalPages);
     }, [numberOfTotalPages])
-
 
     // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
     const sortHandler = (sortType) => {
@@ -71,10 +68,7 @@ function App() {
     // удаление выбранного изображения
     const deleteHandler = (img = "") => {
         setImages(images.filter((el) => el.image !== img));
-        console.log(images.length, " after delete")
         localStorage.setItem(img, "hidden");
-
-
     };
 
     // переключение вида на дерево и обратно
