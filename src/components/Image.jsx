@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import style from "./Image.module.css";
 import constants from "../module/constants";
 import getDate from "../module/getDate";
+import getCleanName from "../module/getCleanName";
 import { AppContext } from "../App";
 
 const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
@@ -16,13 +17,6 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleVisibility = () => setVisible(!isVisible);
-
-  // очистка имени картинки от адреса
-  let cleanName = imageUrl
-    .split("/")
-    .pop()
-    .replace(/[-_.,0-9]/g, "")
-    .replace("jpg", "");
 
   // создание анимации закрытия картинки c помощью framer motion
   const animateVariants = {
@@ -45,7 +39,7 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
           />
           <div className={style.imageText}>
             <p><b>category:</b> {category}</p>
-            <p><b>name:</b> {cleanName}</p>
+            <p><b>name:</b> {getCleanName(imageUrl)}</p>
             <p><b>size:</b> {Number(Math.ceil(fileSize / 1024))} KB</p>
             <p><b>date:</b> {getDate(timeStamp)}</p>
           </div>
