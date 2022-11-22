@@ -44,10 +44,10 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
             onClick={handleOpen}
           />
           <div className={style.imageText}>
-            <p><strong>{category}:</strong></p>
-            <p>{cleanName}</p>
-            <p>{Number(Math.ceil(fileSize / 1024))} KB</p>
-            <p>{getDate(timeStamp)}</p>
+            <p><b>category:</b> {category}</p>
+            <p><b>name:</b> {cleanName}</p>
+            <p><b>size:</b> {Number(Math.ceil(fileSize / 1024))} KB</p>
+            <p><b>date:</b> {getDate(timeStamp)}</p>
           </div>
           <div
             className={style.imageCross}
