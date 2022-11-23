@@ -29,7 +29,6 @@ function App() {
         axios
             .get(constants.JSON_URL)
             .then((response) => {
-
                 setImages(response.data);
                 setTotalPages(calculateTotalPages([...response.data]))
             })
