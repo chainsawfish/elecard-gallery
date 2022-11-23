@@ -1,4 +1,4 @@
-// можно было сделать проще, но stackoverflow не прикажешь :D
+
 const getDate = (timeStamp) => {
   let d = new Date(timeStamp);
   let ye = new Intl.DateTimeFormat("ru", { year: "numeric" }).format(d);

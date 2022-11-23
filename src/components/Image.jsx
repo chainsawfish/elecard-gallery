@@ -50,7 +50,7 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
               setTimeout(() => deleteHandler(imageUrl), 250);
             }}
           >
-            ✕
+            <span>✕</span>
           </div>
           <Modal open={open} onClose={handleClose}>
             <Box sx={constants.modalStyle}>

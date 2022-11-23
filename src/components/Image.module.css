@@ -1,10 +1,10 @@
 .imageContainer {
   position: relative;
-  max-width: 20rem;
+  max-width: 30rem;
   max-height: 20rem;
   min-width: 15rem;
   text-align: left;
-  margin: 10px;
+  margin: 5px;
   overflow: hidden;
 }
 
@@ -37,14 +37,15 @@
 
 .imageCross {
   position: absolute;
-  height: 20px;
-  width: 20px;
+  height: 2rem;
+  width: 2rem;
   top: 0;
   right: 0;
   background-color: rgba(255, 255, 255, 0.9);
   color: rgb(10, 10, 10);
-  padding-left: 5px;
+  text-align: center;
   cursor: pointer;
 }
+
 
 

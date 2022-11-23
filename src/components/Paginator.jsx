@@ -3,10 +3,10 @@ import Pagination from "react-responsive-pagination";
 import "bootstrap/dist/css/bootstrap.css";
 import {AppContext} from "../App";
 
-const Paginator = ({images}) => {
-    const {currentPage, handlePageChange, numberOfImagesOnPage} = useContext(AppContext);
+const Paginator = () => {
+    const {currentPage, handlePageChange, totalPages} = useContext(AppContext);
 
-    const totalPages = Math.ceil(images.length/numberOfImagesOnPage)
+
     return (
         <footer>
             <Pagination

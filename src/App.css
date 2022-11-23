@@ -2,19 +2,13 @@
   text-align: center;
 }
 
-/*.gallery {*/
-/*  display: flex;*/
-/*  flex-wrap: wrap;*/
-/*  flex-direction: row;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*}*/
 
 footer {
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 99;
+
     
 }
 .parentNode h2 {
@@ -25,8 +19,7 @@ footer {
 }
 
 .treeView, .category {
-  margin: 10px;
-  
+  margin: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

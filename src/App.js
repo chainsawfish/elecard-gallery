@@ -18,27 +18,28 @@ function App() {
     const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const [galleryView, setGalleryView] = useState(true);
-
+    const [isReset, setIsReset] = useState(false)
 
     // количество изображений на одну страницу для пагинации
     const numberOfImagesOnPage = 29;
-    const numberOfTotalPages = Math.ceil(images.length / numberOfImagesOnPage);
+
+     const calculateTotalPages = (arrayOfImages) => Math.ceil(arrayOfImages.length / numberOfImagesOnPage);
     // получение данных
     useEffect(() => {
         axios
             .get(constants.JSON_URL)
             .then((response) => {
+
                 setImages(response.data);
+                setTotalPages(calculateTotalPages([...response.data]))
             })
             .catch((error) => {
                 console.log(`Error in parsing json - ${error.message}`);
             })
             .finally(() => setIsLoading(false));
-    }, [currentPage]);
+    }, [currentPage, isReset]);
 
-    useEffect(() => {
-        setTotalPages(numberOfTotalPages);
-    }, [numberOfTotalPages])
+
 
     // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
     const sortHandler = (sortType) => {
@@ -57,6 +58,7 @@ function App() {
                 sortedArray.sort(sorting.date);
                 break;
             default:
+                sortedArray.sort(sorting.name)
                 break;
         }
         setImages(sortedArray);
@@ -69,13 +71,17 @@ function App() {
     const deleteHandler = (img = "") => {
         setImages(images.filter((el) => el.image !== img));
         localStorage.setItem(img, "hidden");
+        setTotalPages(calculateTotalPages(images))
+        setCurrentPage(currentPage)
     };
 
     // переключение вида на дерево и обратно
     const viewHandler = (value) => {
         value === "standartView" ? setGalleryView(true) : setGalleryView(false);
     };
-
+ const resetHandler = () => {
+     setIsReset(!isReset)
+ }
     return (
         <div className="App">
             <AppContext.Provider
@@ -91,12 +97,13 @@ function App() {
                     setImages, numberOfImagesOnPage
                 }}
             >
-                <Header/>
+                <Header resetHandler={resetHandler}/>
                 {isLoading ? <LinearProgress/> : <></>}
                 {galleryView ? (
                     <>
+                        <Paginator images={images} total={totalPages}/>
                         <Gallery images={images}/>
-                        <Paginator images={images}/>
+
                     </>
                 ) : (
                     <TreeView images={images}/>
