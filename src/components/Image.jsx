@@ -31,12 +31,9 @@ const Image = ({ imageUrl, fileSize, category, timeStamp }) => {
         transition={{ ease: "linear" }}
       >
         <div className={style.imageContainer}>
-          <img
-            className={style.image}
-            src={constants.IMG_URL + imageUrl}
-            alt={imageUrl}
-            onClick={handleOpen}
-          />
+          <div className={style.image} style={{backgroundImage: `url(${constants.IMG_URL + imageUrl})`}}
+            onClick={handleOpen}>
+          </div>
           <div className={style.imageText}>
             <p><b>category:</b> {category}</p>
             <p><b>name:</b> {getCleanName(imageUrl)}</p>
