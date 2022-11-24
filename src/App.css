@@ -26,9 +26,14 @@ footer {
 }
 .treeImages {
   margin-left: 50px;
+    display:flex;
+    flex-direction: column;
 }
 .treeImages img{
-  max-width: 50px; 
+  max-width: 50px;
+    min-width: 50px;
+    max-height: 30px;
+    min-height: 40px;
   margin: 5px; 
 }
 .treeImages:hover{
