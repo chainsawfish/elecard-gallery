@@ -3,8 +3,8 @@ import Pagination from "react-responsive-pagination";
 import "bootstrap/dist/css/bootstrap.css";
 import {AppContext} from "../App";
 
-const Paginator = () => {
-    const {currentPage, handlePageChange, totalPages} = useContext(AppContext);
+const Paginator = ({currentPage, totalPages}) => {
+    const {handlePageChange} = useContext(AppContext);
 
 
     return (

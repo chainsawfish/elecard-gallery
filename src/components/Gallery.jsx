@@ -2,14 +2,15 @@ import Image from "./Image";
 import style from "./Gallery.module.css"
 import {AppContext} from "../App";
 import {useContext} from "react";
+import constants from "../module/constants";
 
 const Gallery = ({ images }) => {
-  const {currentPage, numberOfImagesOnPage} = useContext(AppContext)
+  const {currentPage} = useContext(AppContext)
 
   const isOnCurrentPage = (index) => {
       return (
-          index >= (currentPage-1) * numberOfImagesOnPage &&
-          index <= currentPage * numberOfImagesOnPage
+          index >= (currentPage-1) * constants.numberOfImagesOnPage &&
+          index <= currentPage * constants.numberOfImagesOnPage
       );
   };
   return (

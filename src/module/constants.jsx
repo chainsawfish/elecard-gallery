@@ -1,6 +1,7 @@
 const constants = {
   JSON_URL: "http://contest.elecard.ru/frontend_data/catalog.json",
   IMG_URL: "http://contest.elecard.ru/frontend_data/",
+  numberOfImagesOnPage: 29,
   modalStyle: {
     position: "absolute",
     top: "50%",
