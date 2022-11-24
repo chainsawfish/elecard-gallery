@@ -23,7 +23,7 @@ function App() {
     // количество изображений на одну страницу для пагинации
     const numberOfImagesOnPage = 29;
 
-     const calculateTotalPages = (arrayOfImages) => Math.ceil(arrayOfImages.length / numberOfImagesOnPage);
+    const calculateTotalPages = (arrayOfImages) => Math.ceil(arrayOfImages.length / numberOfImagesOnPage);
     // получение данных
     useEffect(() => {
         axios
@@ -37,7 +37,6 @@ function App() {
             })
             .finally(() => setIsLoading(false));
     }, [currentPage, isReset]);
-
 
 
     // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
@@ -78,9 +77,9 @@ function App() {
     const viewHandler = (value) => {
         value === "standartView" ? setGalleryView(true) : setGalleryView(false);
     };
- const resetHandler = () => {
-     setIsReset(!isReset)
- }
+    const resetHandler = () => {
+        setIsReset(!isReset)
+    }
     return (
         <div className="App">
             <AppContext.Provider
