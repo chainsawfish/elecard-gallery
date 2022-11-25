@@ -12,7 +12,7 @@ const Gallery = ({ images }) => {
   const gallery = useMemo(()=> {
       const isOnCurrentPage = (index) => {
           return (
-              index >= (currentPage-1) * constants.numberOfImagesOnPage &&
+              index > (currentPage-1) * constants.numberOfImagesOnPage &&
               index <= currentPage * constants.numberOfImagesOnPage
           );
       };
