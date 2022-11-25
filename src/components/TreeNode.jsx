@@ -6,21 +6,23 @@ import style from "./TreeNode.module.css";
 import getCleanName from "../module/getCleanName";
 import getDate from "../module/getDate";
 
-const TreeImage = ({image, sign}) => {
-
+const TreeNode = ({image}) => {
+    const [sign, setSign] = useState(false);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     let imageUrl = image.image
-    const changeDisplayStyle = (value) => {
-        return value ? {display: "block"} : {display: "none"};
-    };
+
     return (
-        <div className="treeImages" style={changeDisplayStyle(sign)}>
-            <div className={style.imageContainer}>
-                <img className={style.image}
+        <>
+            <h4 className={style.imageNodeName} onClick={(e) => {
+                setSign(!sign)
+                e.stopPropagation()
+            }}>{constants.isOpened(sign)} {getCleanName(imageUrl)}:</h4>
+        <div className="treeImages" style={constants.changeDisplayStyle(sign)}>
+            <div className={style.imageContainer}  >
+                <img alt={imageUrl}
                      src={constants.IMG_URL + imageUrl}
-                     alt={imageUrl}
                      onClick={handleOpen}
                 />
                 <div className={style.imageText}>
@@ -38,8 +40,8 @@ const TreeImage = ({image, sign}) => {
             </div>
 
         </div>
-
+        </>
     );
 };
 
-export default TreeImage;
+export default TreeNode;

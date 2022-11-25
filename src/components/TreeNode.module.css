@@ -6,6 +6,7 @@
     text-align: left;
     margin: 5px;
     overflow: hidden;
+
 }
 .imageText {
     height: 25%;
@@ -23,6 +24,7 @@
     justify-items: left;
 
 }
-.image {
-
+.imageNodeName{
+    margin-left: 20px;
+    text-align: left;
 }
