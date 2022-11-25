@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import constants from "../module/constants";
 
@@ -22,12 +22,10 @@ const useFetchImages = (url, isReset) => {
         } catch (error) {
             setIsLoading(true)
             console.log(error)
-        } finally {
-            setIsLoading(false)
         }
     }
     useEffect(()=> {
-        fetchData()
+        fetchData().then(() => setIsLoading(false))
     },[isReset])
     return {images, setImages, isLoading, totalPages, setTotalPages, allImagesArray}
 }

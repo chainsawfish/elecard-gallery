@@ -47,7 +47,7 @@ function App() {
     const deleteHandler = (img = "") => {
         setImages(images.filter((el) => el.image !== img));
         localStorage.setItem(img, "hidden");
-        setTotalPages(totalPages)
+
     };
 
 
@@ -57,8 +57,9 @@ function App() {
 
     const resetHandler = () => {
        setIsReset(!isReset)
+        setTotalPages(totalPages)
     }
-
+console.log("render")
     return (
         <div className="App">
             <AppContext.Provider
