@@ -1,8 +1,8 @@
 import React from "react";
 import {useState} from "react";
-import TreeNode from "./TreeNode";
+import TreeImage from "./TreeImage";
 
-const CategoryView = ({category, images}) => {
+const TreeCategoryView = ({category, images}) => {
     const [sign, setSign] = useState(false);
     const isOpened = (value) => {
         return value ? <span>[-]</span> : <span>[+]</span>;
@@ -15,11 +15,11 @@ const CategoryView = ({category, images}) => {
             </h2>
             {images.map((img, ind) => {
                 if (img.category === category) {
-                    return <TreeNode image={img} sign={sign} key={ind}/>;
+                    return <TreeImage image={img} sign={sign} key={ind}/>;
                 }
                 return null;
             })}
         </div>
     );
 };
-export default CategoryView;
+export default TreeCategoryView;

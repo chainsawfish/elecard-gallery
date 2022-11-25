@@ -6,7 +6,7 @@ import style from "./TreeNode.module.css";
 import getCleanName from "../module/getCleanName";
 import getDate from "../module/getDate";
 
-const TreeNode = ({image, sign}) => {
+const TreeImage = ({image, sign}) => {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -42,4 +42,4 @@ const TreeNode = ({image, sign}) => {
     );
 };
 
-export default TreeNode;
+export default TreeImage;

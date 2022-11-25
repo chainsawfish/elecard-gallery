@@ -1,5 +1,5 @@
 import { sorting } from "../module/sorting";
-import CategoryView from "./CategoryView";
+import TreeCategoryView from "./TreeCategoryView";
 
 const TreeView = ({ images }) => {
   const categoriesArray = (arrayOfImages) => {
@@ -11,7 +11,7 @@ const TreeView = ({ images }) => {
   return (
     <div className="treeView">
       {categoriesArray(images).map((cat, ind) => {
-        return <CategoryView category={cat} images={sortedImages} key={ind} />;
+        return <TreeCategoryView category={cat} images={sortedImages} key={ind} />;
       })}
     </div>
   );

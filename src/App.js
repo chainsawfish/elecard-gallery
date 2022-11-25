@@ -16,8 +16,7 @@ function App() {
     const [currentPage, setCurrentPage] = useState(1);
     const [galleryView, setGalleryView] = useState(true);
     const [isReset, setIsReset] = useState(false)
-    const {images, setImages, isLoading, totalPages, setTotalPages, allImagesArray } = useFetchImages(constants.JSON_URL, isReset, currentPage)
-
+    const {images, setImages, isLoading, totalPages, setTotalPages, allImagesArray } = useFetchImages(constants.JSON_URL, isReset)
 
     const sortHandler = (sortType) => {
         let sortedArray = [...images];
@@ -44,21 +43,22 @@ function App() {
     const handlePageChange = (page = 1) => {
         setCurrentPage(page);
     };
-    // удаление выбранного изображения
+
     const deleteHandler = (img = "") => {
         setImages(images.filter((el) => el.image !== img));
         localStorage.setItem(img, "hidden");
         setTotalPages(totalPages)
-        //setCurrentPage(currentPage)
     };
 
-    // переключение вида на дерево и обратно
+
     const viewHandler = (value) => {
         value === "standartView" ? setGalleryView(true) : setGalleryView(false);
     };
+
     const resetHandler = () => {
        setIsReset(!isReset)
     }
+
     return (
         <div className="App">
             <AppContext.Provider
