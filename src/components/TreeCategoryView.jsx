@@ -7,18 +7,22 @@ const TreeCategoryView = ({category, images}) => {
     const isOpened = (value) => {
         return value ? <span>[-]</span> : <span>[+]</span>;
     };
-
+    const changeDisplayStyle = (value) => {
+        return value ? {display: "block"} : {display: "none"};
+    };
     return (
         <div className="category">
-            <h2 value={sign} onClick={() => setSign(!sign)}>
+            <h2 onClick={() => setSign(!sign)}>
                 {isOpened(sign)} {category}
             </h2>
+            <div style={changeDisplayStyle(sign)}>
             {images.map((img, ind) => {
                 if (img.category === category) {
-                    return <TreeImage image={img} sign={sign} key={ind}/>;
+                    return <TreeImage image={img}  key={ind}   />;
                 }
                 return null;
             })}
+            </div>
         </div>
     );
 };
