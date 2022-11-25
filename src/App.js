@@ -16,7 +16,14 @@ function App() {
     const [currentPage, setCurrentPage] = useState(1);
     const [galleryView, setGalleryView] = useState(true);
     const [isReset, setIsReset] = useState(false)
-    const {images, setImages, isLoading, totalPages, setTotalPages, allImagesArray } = useFetchImages(constants.JSON_URL, isReset)
+    const {
+        images,
+        setImages,
+        isLoading,
+        totalPages,
+        setTotalPages,
+        allImagesArray
+    } = useFetchImages(constants.JSON_URL, isReset)
 
     const sortHandler = (sortType) => {
         let sortedArray = [...images];
@@ -44,22 +51,25 @@ function App() {
         setCurrentPage(page);
     };
 
-    const deleteHandler = (img = "") => {
+    const deleteHandler = (img) => {
+        const n = constants.numberOfImagesOnPage
         setImages(images.filter((el) => el.image !== img));
         localStorage.setItem(img, "hidden");
-
+        if (images.length + n <= totalPages * n + (totalPages * n % n) + 2) {
+            setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
+            setTotalPages(totalPages - 1)
+        }
     };
-
 
     const viewHandler = (value) => {
         value === "standartView" ? setGalleryView(true) : setGalleryView(false);
     };
 
     const resetHandler = () => {
-       setIsReset(!isReset)
+        setIsReset(!isReset)
         setTotalPages(totalPages)
     }
-console.log("render")
+
     return (
         <div className="App">
             <AppContext.Provider

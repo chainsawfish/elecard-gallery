@@ -6,18 +6,19 @@ import constants from "../module/constants";
 
 const useFetchImages = (url, isReset) => {
 
-    const [totalPages, setTotalPages] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
     const [images, setImages] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [allImagesArray, setAllImagesArray] = useState([])
     const calculateTotalPages = (arrayOfImages) => Math.ceil(arrayOfImages.length / constants.numberOfImagesOnPage);
-
+    let savedArray = []
     const fetchData = async () => {
         try {
             const response = await axios.get(url);
+             savedArray = [...response.data].filter((el) => !localStorage.getItem(el.image))
             setIsLoading(true)
-            setImages([...response.data])
-            setTotalPages(calculateTotalPages([...response.data]))
+            setImages(savedArray)
+
             if (allImagesArray.length === 0) setAllImagesArray(response.data)
 
         } catch (error) {
@@ -27,8 +28,11 @@ const useFetchImages = (url, isReset) => {
     }
 
     useEffect(()=> {
-        fetchData().then(() => setIsLoading(false))
-    },[isReset])
+        fetchData().then(() => {
+            setTotalPages(calculateTotalPages([...savedArray]) )
+            setIsLoading(false)
+
+    })},[isReset, totalPages] )
     return {images, setImages, isLoading, totalPages, setTotalPages, allImagesArray}
 }
 export default useFetchImages;
