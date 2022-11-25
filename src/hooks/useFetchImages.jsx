@@ -24,6 +24,7 @@ const useFetchImages = (url, isReset) => {
             console.log(error)
         }
     }
+
     useEffect(()=> {
         fetchData().then(() => setIsLoading(false))
     },[isReset])
