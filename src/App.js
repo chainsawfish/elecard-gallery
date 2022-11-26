@@ -55,7 +55,7 @@ function App() {
         const n = constants.numberOfImagesOnPage
         setImages(images.filter((el) => el.image !== img));
         localStorage.setItem(img, "hidden");
-        if (images.length + n <= totalPages * n + (totalPages * n % n) + 2) {
+        if (images.length + n <= totalPages * n + (totalPages * n % n) + 1) {
             setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
             setTotalPages(totalPages - 1)
         }

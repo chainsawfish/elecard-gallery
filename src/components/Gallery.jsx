@@ -16,7 +16,7 @@ const Gallery = ({images}) => {
         return (<div className={style.gallery}>
             {images.map((el, index) => {
                 return (
-                    isOnCurrentPage(index) && !(localStorage.getItem(el.image) === "hidden") && (
+                    isOnCurrentPage(index+1) && !(localStorage.getItem(el.image) === "hidden") && (
                         <Image
                             imageUrl={el.image}
                             key={el.image}

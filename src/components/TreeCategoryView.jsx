@@ -8,12 +8,14 @@ const TreeCategoryView = ({category, images}) => {
     const imagesArray = useMemo(() => {
         return (images.map((img, ind) => {
             if (img.category === category) {
-                return <TreeNode image={img} key={ind} style={constants.changeDisplayStyle(sign)} />;
+                return <TreeNode image={img} key={ind} style={constants.changeDisplayStyle(sign)}/>;
             }
+            return null
         }))
+        // eslint-disable-next-line
     }, [sign])
     return (
-        <div className="category" >
+        <div className="category">
             <h2 onClick={(e) => {
                 e.stopPropagation()
                 setSign(!sign)
