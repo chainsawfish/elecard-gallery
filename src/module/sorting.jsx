@@ -1,3 +1,4 @@
+import getCleanName from "./getCleanName";
 export const sorting = {
   category: (a, b) => {
     if (a.category < b.category) {
@@ -11,8 +12,8 @@ export const sorting = {
   fileSize: (a, b) => a.filesize - b.filesize,
   date: (a, b) => a.timestamp - b.timestamp,
   name: (a, b) => {
-    let name1 = a.image.split("/").pop();
-    let name2 = b.image.split("/").pop();
+    let name1 = getCleanName(a.image.split("/").pop())
+    let name2 = getCleanName(b.image.split("/").pop())
     return ("" + name1).localeCompare(name2);
   },
 };

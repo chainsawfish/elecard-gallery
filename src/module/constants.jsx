@@ -1,6 +1,11 @@
+import React from "react";
+
 const constants = {
   JSON_URL: "http://contest.elecard.ru/frontend_data/catalog.json",
   IMG_URL: "http://contest.elecard.ru/frontend_data/",
+  numberOfImagesOnPage: 30,
+  isOpened:  (value) => value ? <span>[-]</span> : <span>[+]</span>,
+  changeDisplayStyle:  (value) => value ? {display: "block"} : {display: "none"},
   modalStyle: {
     position: "absolute",
     top: "50%",

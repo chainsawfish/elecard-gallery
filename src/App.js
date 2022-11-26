@@ -1,112 +1,102 @@
-import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import {createContext, useState} from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { LinearProgress } from "@mui/material";
+import {LinearProgress} from "@mui/material";
 import "./App.css";
 import Gallery from "./components/Gallery";
 import constants from "./module/constants";
 import Header from "./components/Header";
 import TreeView from "./components/TreeView";
 import Paginator from "./components/Paginator";
-import { sorting } from "./module/sorting";
-export const AppContext = createContext();
+import {sorting} from "./module/sorting";
+import useFetchImages from "./hooks/useFetchImages";
+
+export const AppContext = createContext(null);
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-  const [galleryView, setGalleryView] = useState(true);
-  // количество изображений на одну страницу для пагинации
-  const numberOfImagesOnPage = 20;
-  // получение данных
-  useEffect(() => {
-    axios
-      .get(constants.JSON_URL)
-      .then((response) => {
-        setImages(response.data);
-        setTotalPages(Number(images.length / numberOfImagesOnPage));
-      })
-      .catch((error) => {
-        console.log(`Error in parsing json - ${error.message}`);
-      })
-      .finally(() => setTimeout(() => setIsLoading(false), 2000));
-  }, [images.length]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [galleryView, setGalleryView] = useState(true);
+    const [isReset, setIsReset] = useState(false)
+    const {
+        images,
+        setImages,
+        isLoading,
+        totalPages,
+        setTotalPages,
+        allImagesArray
+    } = useFetchImages(constants.JSON_URL, isReset)
 
-  // сортировка, функции находятся в отдельном файле, саму сортировку не отрефакторил в отдельный файл, каюсь
-  const sortHandler = (sortType) => {
-    let sortedArray = [...images];
-    switch (sortType) {
-      case "name":
-        sortedArray.sort(sorting.name);
-        break;
-      case "fileSize":
-        sortedArray.sort(sorting.fileSize);
-        break;
-      case "category":
-        sortedArray.sort(sorting.category);
-        break;
-      case "date":
-        sortedArray.sort(sorting.date);
-        break;
-      default:
-        break;
+    const sortHandler = (sortType) => {
+        let sortedArray = [...images];
+        switch (sortType) {
+            case "name":
+                sortedArray.sort(sorting.name);
+                break;
+            case "fileSize":
+                sortedArray.sort(sorting.fileSize);
+                break;
+            case "category":
+                sortedArray.sort(sorting.category);
+                break;
+            case "date":
+                sortedArray.sort(sorting.date);
+                break;
+            default:
+                sortedArray.sort(sorting.name)
+                break;
+        }
+        setImages(sortedArray);
+    };
+
+    const handlePageChange = (page = 1) => {
+        setCurrentPage(page);
+    };
+
+    const deleteHandler = (img) => {
+        const n = constants.numberOfImagesOnPage
+        setImages(images.filter((el) => el.image !== img));
+        localStorage.setItem(img, "hidden");
+        if (images.length + n <= totalPages * n + (totalPages * n % n) + 1) {
+            setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
+            setTotalPages(totalPages - 1)
+        }
+    };
+
+    const viewHandler = (value) => {
+        value === "standartView" ? setGalleryView(true) : setGalleryView(false);
+    };
+
+    const resetHandler = () => {
+        setIsReset(!isReset)
+        setTotalPages(totalPages)
     }
-    setImages(sortedArray);
-  };
 
-  // удаление выбранного изображения
-  const deleteHandler = (img = "") => {
-    localStorage.setItem(img, "hidden");
-    setImages(images.filter((el) => el.image !== img));
-  };
+    return (
+        <div className="App">
+            <AppContext.Provider
+                value={{
+                    deleteHandler,
+                    sortHandler,
+                    viewHandler,
+                    handlePageChange,
+                    currentPage,
+                    setCurrentPage,
+                    images,
+                }}
+            >
+                <Header resetHandler={resetHandler}/>
+                {isLoading ? <LinearProgress/> : <></>}
+                {galleryView ? (
+                    <>
+                        <Paginator images={images} totalPages={totalPages} currentPage={currentPage}/>
+                        <Gallery images={images}/>
 
-  // переключение вида на дерево и обратно
-  const viewHandler = (value) => {
-    value === "standartView" ? setGalleryView(true) : setGalleryView(false);
-  };
-
-  // показываем определенное количество изображений на страницу
-  const imagesOnCurrentPage = (value) => {
-    return images.filter((_, ind) => {
-      return (
-        ind >= (currentPage - 1) * numberOfImagesOnPage &&
-        ind <= currentPage * numberOfImagesOnPage
-      );
-    });
-  };
-
-  return (
-    <div className="App">
-      <AppContext.Provider
-        value={{
-          deleteHandler,
-          sortHandler,
-          viewHandler,
-          currentPage,
-          setCurrentPage,
-          totalPages,
-          images,
-          setImages,
-        }}
-      >
-        <Header />
-        {isLoading ? <LinearProgress /> : <></>}
-        {galleryView ? (
-          <>
-            <Gallery
-              images={imagesOnCurrentPage(images)}
-              deleteHandler={deleteHandler}
-            />
-
-            <Paginator />
-          </>
-        ) : (
-          <TreeView images={images} deleteHandler={deleteHandler} />
-        )}
-      </AppContext.Provider>
-    </div>
-  );
+                    </>
+                ) : (
+                    <TreeView images={allImagesArray}/>
+                )}
+            </AppContext.Provider>
+        </div>
+    );
 }
 
 export default App;
