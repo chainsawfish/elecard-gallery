@@ -7,7 +7,7 @@ import constants from "./module/constants";
 import Header from "./components/Header";
 import TreeView from "./components/TreeView";
 import Paginator from "./components/Paginator";
-import {sorting} from "./module/sorting";
+import { sortingSwitch} from "./module/sorting";
 import useFetchImages from "./hooks/useFetchImages";
 
 export const AppContext = createContext(null);
@@ -26,25 +26,7 @@ function App() {
     } = useFetchImages(constants.JSON_URL, isReset)
 
     const sortHandler = (sortType) => {
-        let sortedArray = [...images];
-        switch (sortType) {
-            case "name":
-                sortedArray.sort(sorting.name);
-                break;
-            case "fileSize":
-                sortedArray.sort(sorting.fileSize);
-                break;
-            case "category":
-                sortedArray.sort(sorting.category);
-                break;
-            case "date":
-                sortedArray.sort(sorting.date);
-                break;
-            default:
-                sortedArray.sort(sorting.name)
-                break;
-        }
-        setImages(sortedArray);
+        setImages(sortingSwitch(sortType, images));
     };
 
     const handlePageChange = (page = 1) => {

@@ -1,5 +1,5 @@
 import getCleanName from "./getCleanName";
-export const sorting = {
+ export const sorting = {
   category: (a, b) => {
     if (a.category < b.category) {
       return -1;
@@ -17,3 +17,26 @@ export const sorting = {
     return ("" + name1).localeCompare(name2);
   },
 };
+
+export const sortingSwitch = (sortType, images) => {
+  let sortedArray = [...images];
+
+  switch (sortType) {
+    case "name":
+      sortedArray.sort(sorting.name);
+      break;
+    case "fileSize":
+      sortedArray.sort(sorting.fileSize);
+      break;
+    case "category":
+      sortedArray.sort(sorting.category);
+      break;
+    case "date":
+      sortedArray.sort(sorting.date);
+      break;
+    default:
+      sortedArray.sort(sorting.name)
+      break;
+  }
+  return sortedArray
+}

@@ -6,11 +6,13 @@ import constants from "../module/constants";
 
 const TreeView = ({images}) => {
     const [sign, setSign] = useState(false);
+
     const sortedImages = useMemo(() => [...images].sort(sorting.category), [images])
     const categoriesArray = useMemo(() => Array(...new Set(images.map((el) => el.category))).map((cat, ind) => {
         return (
             <TreeCategoryView category={cat} images={sortedImages} key={ind} />
         )
+        // eslint-disable-next-line
     }), []);
 
     return (
