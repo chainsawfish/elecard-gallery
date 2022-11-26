@@ -11,7 +11,7 @@ const TreeView = ({images}) => {
         return (
             <TreeCategoryView category={cat} images={sortedImages} key={ind} />
         )
-    }), [sortedImages]);
+    }), []);
 
     return (
         <div className="treeView" onClick={() => {
