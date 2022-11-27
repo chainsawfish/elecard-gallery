@@ -6,12 +6,10 @@ const Header = ({resetHandler}) => {
   const clearLocalStorage = () => {
     localStorage.clear();
     resetHandler()
-
-
   };
   return (
     <header>
-      <button onClick={() => clearLocalStorage()}>Reset</button>
+      <button className="btnReset" onClick={() => clearLocalStorage()}>Reset</button>
       <RadioViewChange />
       <RadioSort />
     </header>
