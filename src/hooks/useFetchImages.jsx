@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {useState, useEffect} from "react";
 import axios from "axios";
-import constants from "../module/constants";
+import constants from "../data/constants";
 
 
 const useFetchImages = (url, isReset) => {

@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from "react";
-import {sorting} from "../module/sorting";
+import {sorting} from "../utils/sorting";
 import TreeCategoryView from "./TreeCategoryView";
-import constants from "../module/constants";
+import constants from "../data/constants";
 
 
 const TreeView = ({images}) => {

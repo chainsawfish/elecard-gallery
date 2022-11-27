@@ -1,10 +1,10 @@
 import React, {useMemo, useState} from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import constants from "../module/constants";
+import constants from "../data/constants";
 import style from "./TreeNode.module.css";
-import getCleanName from "../module/getCleanName";
-import getDate from "../module/getDate";
+import getCleanName from "../utils/getCleanName";
+import getDate from "../utils/getDate";
 
 const TreeNode = ({image}) => {
     const [sign, setSign] = useState(false);

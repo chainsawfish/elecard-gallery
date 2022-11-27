@@ -2,10 +2,10 @@ import React, {createContext, useState, Suspense} from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import {LinearProgress} from "@mui/material";
 import "./App.css";
-import constants from "./module/constants";
+import constants from "./data/constants";
 import Header from "./components/Header";
 import Paginator from "./components/Paginator";
-import {sortingSwitch} from "./module/sorting";
+import {sortingSwitch} from "./utils/sorting";
 import useFetchImages from "./hooks/useFetchImages";
 // lazy components
 const Gallery = React.lazy(() => import("./components/Gallery"))

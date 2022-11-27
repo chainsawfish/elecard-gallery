@@ -2,7 +2,7 @@ import Image from "./Image";
 import style from "./Gallery.module.css"
 import {AppContext} from "../App";
 import {useContext, useMemo} from "react";
-import constants from "../module/constants";
+import constants from "../data/constants";
 
 const Gallery = ({images}) => {
     const {currentPage} = useContext(AppContext)
