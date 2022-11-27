@@ -59,12 +59,11 @@ function App() {
             <AppContext.Provider value={storeValues}>
                 <Header resetHandler={resetHandler}/>
                 <Suspense fallback={<LinearProgress/>}>
-                    {galleryView ?
-                        <div>
+                        <div style={constants.changeDisplayStyle(galleryView)}>
                             <Paginator images={images} totalPages={totalPages} currentPage={currentPage}/>
                             <Gallery images={images}/>
-                        </div> : (<TreeView images={allImagesArray}/>)
-                    }
+                        </div>
+                         <div style={constants.changeDisplayStyle(!galleryView)}><TreeView images={allImagesArray}/></div>
                 </Suspense>
             </AppContext.Provider>
         </div>
