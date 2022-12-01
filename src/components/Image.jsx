@@ -30,14 +30,16 @@ const Image = ({imageUrl, fileSize, category, timeStamp}) => {
                 transition={{ease: "linear"}}
             >
                 <div className={style.imageContainer}>
-                    <div className={style.image} style={{backgroundImage: `url(${constants.IMG_URL + imageUrl})`}}
-                         onClick={handleOpen}>
-                    </div>
-                    <div className={style.imageText}>
-                        <p><b>category:</b> {category}</p>
-                        <p><b>name:</b> {getCleanName(imageUrl)}</p>
-                        <p><b>size:</b> {Number(Math.ceil(fileSize / 1024))} KB</p>
-                        <p><b>date:</b> {getDate(timeStamp)}</p>
+                    <div className={style.cardHolder}>
+                        <div className={style.image} style={{backgroundImage: `url(${constants.IMG_URL + imageUrl})`}}
+                             onClick={handleOpen}>
+                        </div>
+                        <div className={style.imageText}>
+                            <p><b>category:</b> {category}</p>
+                            <p><b>name:</b> {getCleanName(imageUrl)}</p>
+                            <p><b>size:</b> {Number(Math.ceil(fileSize / 1024))} KB</p>
+                            <p><b>date:</b> {getDate(timeStamp)}</p>
+                        </div>
                     </div>
                     <div
                         className={style.imageCross}
