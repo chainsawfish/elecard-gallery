@@ -12,7 +12,7 @@ const Header = ({resetHandler, currentView}) => {
     <header>
       <button style={constants.changeDisplayStyle(currentView)} className="btnReset" onClick={() => clearLocalStorage()}>Reset</button>
       <RadioViewChange />
-      <RadioSort currentrView={currentView}/>
+      <RadioSort currentView={currentView}/>
     </header>
   );
 };
