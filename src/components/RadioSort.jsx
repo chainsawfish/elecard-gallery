@@ -8,16 +8,7 @@ const RadioSort = () => {
     <>
       <div>
         <h4>Sort by</h4>
-        Unsorted
-        <input
-            onChange={(e) => sortHandler(e.target.value)}
-            type="radio"
-            value="default"
-            name="sort"
-            defaultChecked={true}
-            disabled={true}
-        />
-        Name
+
         <input
           onChange={(e) => sortHandler(e.target.value)}
           type="radio"
@@ -25,27 +16,28 @@ const RadioSort = () => {
           name="sort"
 
         />
-        Filesize
+        Name
         <input
           onChange={(e) => sortHandler(e.target.value)}
           type="radio"
           value="fileSize"
           name="sort"
         />
-        Date
+        Filesize
         <input
           onChange={(e) => sortHandler(e.target.value)}
           type="radio"
           value="date"
           name="sort"
         />
-        Category
+        Date
         <input
           onChange={(e) => sortHandler(e.target.value)}
           type="radio"
           value="category"
           name="sort"
         />
+        Category
       </div>
     </>
   );
