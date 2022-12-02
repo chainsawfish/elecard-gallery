@@ -47,23 +47,29 @@ function App() {
         setIsReset(!isReset)
         setTotalPages(totalPages)
     }
-    const storeValues = {deleteHandler,
+    const clickDisableHandler = (value) => {
+        return constants.notClickable(value)
+    }
+    const storeValues = {
+        deleteHandler,
         sortHandler,
         viewHandler,
         handlePageChange,
+        clickDisableHandler,
         currentPage,
         setCurrentPage,
-        images}
+        images
+    }
     return (
         <div className="App">
             <AppContext.Provider value={storeValues}>
                 <Header resetHandler={resetHandler} currentView={galleryView}/>
                 <Suspense fallback={<LinearProgress/>}>
-                        <div style={constants.changeDisplayStyle(galleryView)}>
-                            <Paginator images={images} totalPages={totalPages} currentPage={currentPage}/>
-                            <Gallery images={images}/>
-                        </div>
-                         <div style={constants.changeDisplayStyle(!galleryView)}><TreeView images={allImagesArray}/></div>
+                    <div style={constants.changeDisplayStyle(galleryView)}>
+                        <Paginator images={images} totalPages={totalPages} currentPage={currentPage}/>
+                        <Gallery images={images}/>
+                    </div>
+                    <div style={constants.changeDisplayStyle(!galleryView)}><TreeView images={allImagesArray}/></div>
                 </Suspense>
             </AppContext.Provider>
         </div>

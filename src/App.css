@@ -12,13 +12,10 @@ footer {
 
 }
 
-.parentNode h2 {
+.category h2 {
     cursor: pointer;
 }
 
-.category {
-    cursor: pointer;
-}
 
 /*----------- TREE VIEW ------------------- */
 .treeView {
@@ -31,6 +28,7 @@ footer {
 
 .treeImages {
     margin-left: 50px;
+    cursor: pointer;
 
 }
 
@@ -38,11 +36,9 @@ footer {
     min-width: 100px;
     max-width: 300px;
     margin: 5px;
+    padding: 0;
 }
 
-.treeImages:hover {
-    box-shadow: 1px 1px 1px 1px rgb(224, 166, 20);
-}
 
 .rootView {
     cursor: pointer;

@@ -8,9 +8,7 @@
     border: 1px solid #9f9a9a;
 
 }
-.imageContainer img {
-    width:auto;
-}
+
 .imageText {
 
     background-color: rgba(255, 255, 255, 0.9);
@@ -26,4 +24,6 @@
 .imageNodeName{
     margin-left: 20px;
     text-align: left;
+    cursor: pointer;
 }
+

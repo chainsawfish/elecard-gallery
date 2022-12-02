@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, { useMemo, useState} from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import constants from "../data/constants";
@@ -9,7 +9,9 @@ import getDate from "../utils/getDate";
 const TreeNode = ({image}) => {
     const [sign, setSign] = useState(false);
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        setOpen(true);
+    }
     const handleClose = () => setOpen(false);
     const cachedImage = useMemo(() => {
         return image
@@ -27,8 +29,8 @@ const TreeNode = ({image}) => {
                     <img alt={imageUrl}
                          src={constants.IMG_URL + imageUrl}
                          onClick={(e) => {
-                             e.stopPropagation()
                              handleOpen()
+                             e.stopPropagation()
                          }}
                     />
                     <div className={style.imageText}>

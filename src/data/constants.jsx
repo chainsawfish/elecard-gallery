@@ -6,6 +6,7 @@ const constants = {
   numberOfImagesOnPage: 30,
   isOpened:  (value) => value ? <span>[-]</span> : <span>[+]</span>,
   changeDisplayStyle:  (value) => value ? {display: "block"} : {display: "none"},
+  notClickable: (value) => value ? {"pointer-events": "auto"} : {"pointer-events": "none"},
   modalStyle: {
     position: "absolute",
     top: "50%",
