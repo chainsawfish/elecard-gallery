@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 
@@ -9,35 +9,38 @@ footer {
     width: 100%;
     z-index: 99;
 
-    
-}
-.parentNode h2 {
-  cursor: pointer;
-}
-.category {
-  cursor: pointer;
-}
- /*----------- TREE VIEW ------------------- */
-.treeView {
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 
 }
-.treeImages {
-  margin-left: 50px;
-    display:flex;
+
+.parentNode h2 {
+    cursor: pointer;
+}
+
+.category {
+    cursor: pointer;
+}
+
+/*----------- TREE VIEW ------------------- */
+.treeView {
+    margin: 5px;
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+
 }
-.treeImages img{
-  max-width: 250px;
-    min-width: 250px;
-    max-height: 230px;
-    min-height: 230px;
-  margin: 5px; 
+
+.treeImages {
+    margin-left: 50px;
+
 }
-.treeImages:hover{
+
+.treeImages img {
+    min-width: 100px;
+    max-width: 300px;
+    margin: 5px;
+}
+
+.treeImages:hover {
     box-shadow: 1px 1px 1px 1px rgb(224, 166, 20);
 }
 
