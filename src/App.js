@@ -8,22 +8,20 @@ import Paginator from "./components/Paginator";
 import {sortingSwitch} from "./utils/sorting";
 import useFetchImages from "./hooks/useFetchImages";
 // lazy components
-const Gallery = React.lazy(() => import("./components/Gallery"))
-const TreeView = React.lazy(() => import("./components/TreeView"))
-
+const Gallery = React.lazy(() => import("./components/Gallery")),
+    TreeView = React.lazy(() => import("./components/TreeView"));
 export const AppContext = createContext(null);
 
 function App() {
     const [currentPage, setCurrentPage] = useState(1);
     const [galleryView, setGalleryView] = useState(true);
-    const [isReset, setIsReset] = useState(false)
     const {
         images,
         setImages,
         totalPages,
         setTotalPages,
         allImagesArray
-    } = useFetchImages(constants.JSON_URL, isReset)
+    } = useFetchImages(constants.JSON_URL)
 
     const sortHandler = (sortType) => {
         setImages(sortingSwitch(sortType, images));
@@ -44,7 +42,8 @@ function App() {
         value === "standartView" ? setGalleryView(true) : setGalleryView(false);
     };
     const resetHandler = () => {
-        setIsReset(!isReset)
+        //setIsReset(!isReset)
+        setImages(allImagesArray)
         setTotalPages(totalPages)
     }
     const clickDisableHandler = (value) => {

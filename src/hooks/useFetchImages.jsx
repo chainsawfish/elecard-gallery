@@ -4,7 +4,7 @@ import axios from "axios";
 import constants from "../data/constants";
 
 
-const useFetchImages = (url, isReset) => {
+const useFetchImages = (url) => {
 
     const [totalPages, setTotalPages] = useState(0)
     const [images, setImages] = useState([])
@@ -27,7 +27,7 @@ const useFetchImages = (url, isReset) => {
 
     useEffect(()=> {
         fetchData().then(() => {} )
-    },[isReset, totalPages] )
+    },[url] )
     return {images, setImages, totalPages, setTotalPages, allImagesArray}
 }
 export default useFetchImages;
