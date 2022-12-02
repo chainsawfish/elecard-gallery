@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
 import "./RadioSort.module.css";
+import constants from "../data/constants";
 
-const RadioSort = () => {
+const RadioSort = ({currentrView}) => {
   const { sortHandler } = useContext(AppContext);
   return (
     <>
-      <div>
+      <div style={constants.changeDisplayStyle(currentrView)}>
         <h4>Sort by</h4>
 
         <input
