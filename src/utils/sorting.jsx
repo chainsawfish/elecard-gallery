@@ -12,8 +12,8 @@ import getCleanName from "./getCleanName";
   fileSize: (a, b) => a.filesize - b.filesize,
   date: (a, b) => a.timestamp - b.timestamp,
   name: (a, b) => {
-    let name1 = getCleanName(a.image.split("/").pop())
-    let name2 = getCleanName(b.image.split("/").pop())
+    let name1 = getCleanName(a.image)
+    let name2 = getCleanName(b.image)
     return ("" + name1).localeCompare(name2);
   },
 };
