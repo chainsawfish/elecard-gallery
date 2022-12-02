@@ -3,11 +3,11 @@ import { AppContext } from "../App";
 import "./RadioSort.module.css";
 import constants from "../data/constants";
 
-const RadioSort = ({currentrView}) => {
+const RadioSort = ({currentView}) => {
   const { sortHandler } = useContext(AppContext);
   return (
     <>
-      <div style={constants.changeDisplayStyle(currentrView)}>
+      <div style={constants.changeDisplayStyle(currentView)}>
         <h4>Sort by</h4>
 
         <input
