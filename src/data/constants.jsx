@@ -15,6 +15,7 @@ const constants = {
     width: "fit-content",
     bgcolor: "",
     border: "0px solid #000",
+    pointerEvents: "none",
   },
 };
 

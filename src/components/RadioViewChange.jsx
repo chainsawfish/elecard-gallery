@@ -5,7 +5,6 @@ const RadioViewChange = () => {
   const { viewHandler } = useContext(AppContext);
   return (
     <div>
-      Standart view
       <input
         type="radio"
         name="viewChange"
@@ -13,13 +12,14 @@ const RadioViewChange = () => {
         onChange={(e) => viewHandler(e.target.value)}
         defaultChecked
       />
-      Tree view
+        Standart view
       <input
         type="radio"
         name="viewChange"
         value="treeView"
         onChange={(e) => viewHandler(e.target.value)}
       />
+        Tree view
     </div>
   );
 };
