@@ -5,7 +5,6 @@ import constants from "../../../data/constants";
 
 const RadioSort = ({currentView}) => {
     const {sortHandler} = useContext(AppContext);
-
     return (
         <>
             <div style={constants.changeDisplayStyle(currentView)}>
@@ -22,7 +21,6 @@ const RadioSort = ({currentView}) => {
                     type="radio"
                     value="fileSize"
                     name="sort"
-
                 />
                 Filesize
                 <input

@@ -50,7 +50,6 @@ const TreeNode = ({image}) => {
                         </Box>
                     </Modal>
                 </div>
-
             </div>
         </>
     );
