@@ -4,10 +4,10 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import {motion, AnimatePresence} from "framer-motion";
 import style from "./Image.module.css";
-import constants from "../data/constants";
-import getDate from "../utils/getDate";
-import getCleanName from "../utils/getCleanName";
-import {AppContext} from "../App";
+import constants from "../../../data/constants";
+import getDate from "../../../utils/getDate";
+import getCleanName from "../../../utils/getCleanName";
+import {AppContext} from "../../../App";
 
 const Image = ({imageUrl, fileSize, category, timeStamp}) => {
     const {deleteHandler} = useContext(AppContext);

@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import {useState} from "react";
-import TreeNode from "./TreeNode";
-import constants from "../data/constants";
+import TreeNode from "../tree__node/TreeNode";
+import constants from "../../../data/constants";
 
 const TreeCategoryView = ({category, images}) => {
     const [sign, setSign] = useState(false);

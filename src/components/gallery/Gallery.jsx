@@ -1,8 +1,8 @@
 import style from "./Gallery.module.css"
-import {AppContext} from "../App";
+import {AppContext} from "../../App";
 import React, {useContext, useMemo} from "react";
-import constants from "../data/constants";
-const Image = React.lazy(() => import("./Image"))
+import constants from "../../data/constants";
+const Image = React.lazy(() => import("./gallery__image/Image"))
 
 const Gallery = ({images}) => {
     const {currentPage} = useContext(AppContext)

@@ -1,7 +1,7 @@
 import {useContext} from "react";
-import {AppContext} from "../App";
+import {AppContext} from "../../../App";
 import "./RadioSort.module.css";
-import constants from "../data/constants";
+import constants from "../../../data/constants";
 
 const RadioSort = ({currentView}) => {
     const {sortHandler} = useContext(AppContext);

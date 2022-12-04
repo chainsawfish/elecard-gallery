@@ -1,7 +1,7 @@
 import "./Header.module.css";
-import RadioSort from "./RadioSort";
-import RadioViewChange from "./RadioViewChange";
-import constants from "../data/constants";
+import RadioSort from "./header__radio/RadioSort";
+import RadioViewChange from "./header__radio/RadioViewChange";
+import constants from "../../data/constants";
 
 const Header = ({resetHandler, currentView}) => {
     return (
