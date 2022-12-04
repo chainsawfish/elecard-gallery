@@ -8,6 +8,7 @@ import Paginator from "./components/paginator/Paginator";
 import {sortingSwitch} from "./utils/sorting";
 import useFetchImages from "./hooks/useFetchImages";
 import {uncheckRadio} from "./utils/uncheckRadio";
+import {pushToStorage} from "./utils/pushToStorage";
 // lazy components
 const Gallery = React.lazy(() => import("./components/gallery/Gallery"))
 const TreeView = React.lazy(() => import("./components/tree/TreeView"))
@@ -36,7 +37,9 @@ function App() {
     const deleteHandler = (img) => {
         const n = constants.numberOfImagesOnPage
         setImages(images.filter((el) => el.image !== img));
-        localStorage.setItem(img, "hidden");
+
+        pushToStorage(img)
+        //localStorage.setItem(img, "hidden");
         if (images.length + n <= totalPages * n + (totalPages * n % n) + 1) {
             setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)
             setTotalPages(totalPages - 1)
