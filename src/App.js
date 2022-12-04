@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Paginator from "./components/Paginator";
 import {sortingSwitch} from "./utils/sorting";
 import useFetchImages from "./hooks/useFetchImages";
+import {uncheckRadio} from "./utils/uncheckRadio";
 // lazy components
 const Gallery = React.lazy(() => import("./components/Gallery")),
     TreeView = React.lazy(() => import("./components/TreeView"));
@@ -15,6 +16,7 @@ export const AppContext = createContext(null);
 function App() {
     const [currentPage, setCurrentPage] = useState(1);
     const [galleryView, setGalleryView] = useState(true);
+
     const {
         images,
         setImages,
@@ -42,9 +44,11 @@ function App() {
         value === "standartView" ? setGalleryView(true) : setGalleryView(false);
     };
     const resetHandler = () => {
-        //setIsReset(!isReset)
+        localStorage.clear();
+        uncheckRadio()
         setImages(allImagesArray)
         setTotalPages(totalPages)
+
     }
     const clickDisableHandler = (value) => {
         return constants.notClickable(value)

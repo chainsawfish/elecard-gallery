@@ -35,7 +35,6 @@ export const sortingSwitch = (sortType, images) => {
       sortedArray.sort(sorting.date);
       break;
     default:
-      sortedArray.sort(sorting.name)
       break;
   }
   return sortedArray
